@@ -9,7 +9,7 @@ const Start = () => {
   const navigate = useNavigate();
 
   const handelClick = () => {
-    if (name == "" || id == "") {
+    if (name === "" || id === "") {
       alert("Enter your shop details first");
     } else {
       localStorage.setItem("name", name);

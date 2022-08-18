@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"
+import axios from "axios";
 import Sidebar from "../Components/Sidebar";
 import "../Style/Home.css";
 // import { Customer, Orders, Products } from "../Api/Api";
@@ -11,50 +11,35 @@ const Home = () => {
   const [product, setProduct] = useState(true);
   const [order, setOrder] = useState(false);
 
-
- 
-
-const Customer=()=>{
-    const [data,setData]=useState([])
-    useEffect(()=>{
-     axios.get("https://assessment.api.vweb.app/users")
-     .then((response)=>{
+  const Customer = () => {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+      axios.get("https://assessment.api.vweb.app/users").then((response) => {
         setData(response.data);
-        
-     })
-    },[])
-    return data
-};
+      });
+    }, []);
+    return data;
+  };
 
-
-const Products=()=>{
-    const [data,setData]=useState([])
-    useEffect(()=>{
-     axios.get("https://assessment.api.vweb.app/products")
-     .then((response)=>{
+  const Products = () => {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+      axios.get("https://assessment.api.vweb.app/products").then((response) => {
         setData(response.data);
-        
-     })
-    },[])
-    return data
-};
+      });
+    }, []);
+    return data;
+  };
 
-
-const Orders=()=>{
-    const [data,setData]=useState([])
-    useEffect(()=>{
-     axios.get("https://assessment.api.vweb.app/orders")
-     .then((response)=>{
+  const Orders = () => {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+      axios.get("https://assessment.api.vweb.app/orders").then((response) => {
         setData(response.data);
-        
-     })
-    },[])
-    return data
-};
-
-
-
-
+      });
+    }, []);
+    return data;
+  };
 
   const showProduct = () => {
     setProduct(true);
@@ -87,7 +72,7 @@ const Orders=()=>{
       <div className="all min-vh-100" id="night">
         <div className="row">
           <div className="col-1">
-           <Sidebar />
+            <Sidebar />
           </div>
           <div className="container col m-2  ">
             <h1 className="text-center" id="main">
@@ -151,111 +136,107 @@ const Orders=()=>{
               </div>
             </div>
 
-         <div id="dds">
-         {user ? (
-              <MaterialTable
-                data={customerDetails}
-                columns={[
-                  {
-                    title: "CUSTOMER ID",
-                    field: "user_id",
-                  },
-                  { title: "NAME", field: "name" },
-                ]}
-                options={{
-                  exportMenu: [
+            <div id="dds">
+              {user ? (
+                <MaterialTable
+                  data={customerDetails}
+                  columns={[
                     {
-                      label: "Export Pdf",
-                      exportFunc: (cols, datas) =>
-                        ExportPdf(cols, datas, "Ticket Records"),
+                      title: "CUSTOMER ID",
+                      field: "user_id",
                     },
-                  ],
-                  headerStyle: {
-                    backgroundColor: "#2495ab",
-                    color: "#fff",
-                  },
-                  rowStyle: {
-                    backgroundColor: "#eee",
-                  },
-                }}
-                title="CUSTOMER DETAILS"
-              />
-            ) : (
-              ""
-            )}
-            
+                    { title: "NAME", field: "name" },
+                  ]}
+                  options={{
+                    exportMenu: [
+                      {
+                        label: "Export Pdf",
+                        exportFunc: (cols, datas) =>
+                          ExportPdf(cols, datas, "Ticket Records"),
+                      },
+                    ],
+                    headerStyle: {
+                      backgroundColor: "#2495ab",
+                      color: "#fff",
+                    },
+                    rowStyle: {
+                      backgroundColor: "#eee",
+                    },
+                  }}
+                  title="CUSTOMER DETAILS"
+                />
+              ) : (
+                ""
+              )}
 
-           
-            {product ? (
-              <MaterialTable
-                data={productsDetails}
-                columns={[
-                  {
-                    title: "PRODUCT ID",
-                    field: "product_id",
-                  },
-                  { title: "PRODUCT", field: "name" },
-                  { title: "SELLING PRICE", field: "selling_price" },
-                  { title: "STOCK", field: "stock" },
-                ]}
-                options={{
-                  exportMenu: [
+              {product ? (
+                <MaterialTable
+                  data={productsDetails}
+                  columns={[
                     {
-                      label: "Export Pdf",
-                      exportFunc: (cols, datas) =>
-                        ExportPdf(cols, datas, "Ticket Records"),
+                      title: "PRODUCT ID",
+                      field: "product_id",
                     },
-                  ],
-                  headerStyle: {
-                    backgroundColor: "#c3422b",
-                    color: "#fff",
-                  },
-                  rowStyle: {
-                    backgroundColor: "#eee",
-                  },
-                }}
-                title="PRODUCT DETAILS"
-              />
-            ) : (
-              ""
-            )}
+                    { title: "PRODUCT", field: "name" },
+                    { title: "SELLING PRICE", field: "selling_price" },
+                    { title: "STOCK", field: "stock" },
+                  ]}
+                  options={{
+                    exportMenu: [
+                      {
+                        label: "Export Pdf",
+                        exportFunc: (cols, datas) =>
+                          ExportPdf(cols, datas, "Ticket Records"),
+                      },
+                    ],
+                    headerStyle: {
+                      backgroundColor: "#c3422b",
+                      color: "#fff",
+                    },
+                    rowStyle: {
+                      backgroundColor: "#eee",
+                    },
+                  }}
+                  title="PRODUCT DETAILS"
+                />
+              ) : (
+                ""
+              )}
 
-            {order ? (
-              <MaterialTable
-                data={orderDetails}
-                columns={[
-                  {
-                    title: "ORDER ID",
-                    field: "order_id",
-                  },
-                  { title: "PRODUCT ID", field: "product_id" },
-                  { title: "QUANTITY", field: "quantity" },
-                  { title: "CUSTOMER ID", field: "user_id" },
-                ]}
-                options={{
-                  exportMenu: [
+              {order ? (
+                <MaterialTable
+                  data={orderDetails}
+                  columns={[
                     {
-                      label: "Export Pdf",
-                      exportFunc: (cols, datas) =>
-                        ExportPdf(cols, datas, "Ticket Records"),
+                      title: "ORDER ID",
+                      field: "order_id",
                     },
-                  ],
-                  headerStyle: {
-                    backgroundColor: "#94a91e",
-                    color: "#fff",
-                  },
-                  rowStyle: {
-                    backgroundColor: "#eee",
-                  },
-                }}
-                title="ORDER DETAILS"
-              />
-            ) : (
-              ""
-            )}
-         </div>
-
-            
+                    { title: "PRODUCT ID", field: "product_id" },
+                    { title: "QUANTITY", field: "quantity" },
+                    { title: "CUSTOMER ID", field: "user_id" },
+                  ]}
+                  options={{
+                    exportMenu: [
+                      {
+                        label: "Export Pdf",
+                        exportFunc: (cols, datas) =>
+                          ExportPdf(cols, datas, "Ticket Records"),
+                      },
+                    ],
+                    headerStyle: {
+                      backgroundColor: "#94a91e",
+                      color: "#fff",
+                    },
+                    rowStyle: {
+                      backgroundColor: "#eee",
+                    },
+                  }}
+                  title="ORDER DETAILS"
+                />
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         </div>
       </div>
