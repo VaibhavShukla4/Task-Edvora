@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"
 import Sidebar from "../Components/Sidebar";
 import "../Style/Home.css";
-import { Customer, Orders, Products } from "../Api/Api";
+// import { Customer, Orders, Products } from "../Api/Api";
 import MaterialTable from "@material-table/core";
 import { ExportPdf } from "@material-table/exporters";
 
@@ -9,6 +10,51 @@ const Home = () => {
   const [user, setUser] = useState(false);
   const [product, setProduct] = useState(true);
   const [order, setOrder] = useState(false);
+
+
+ 
+
+const Customer=()=>{
+    const [data,setData]=useState([])
+    useEffect(()=>{
+     axios.get("https://assessment.api.vweb.app/users")
+     .then((response)=>{
+        setData(response.data);
+        
+     })
+    },[])
+    return data
+};
+
+
+const Products=()=>{
+    const [data,setData]=useState([])
+    useEffect(()=>{
+     axios.get("https://assessment.api.vweb.app/products")
+     .then((response)=>{
+        setData(response.data);
+        
+     })
+    },[])
+    return data
+};
+
+
+const Orders=()=>{
+    const [data,setData]=useState([])
+    useEffect(()=>{
+     axios.get("https://assessment.api.vweb.app/orders")
+     .then((response)=>{
+        setData(response.data);
+        
+     })
+    },[])
+    return data
+};
+
+
+
+
 
   const showProduct = () => {
     setProduct(true);

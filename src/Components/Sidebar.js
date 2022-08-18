@@ -21,7 +21,7 @@ const Sidebar = () => {
   }
   return (
     <>
-    <CSidebar unfoldable colorScheme className='vh-100' id='nav'>
+    <CSidebar unfoldable colorscheme="true" className='vh-100' id='nav'>
   <CSidebarNav>
   <CNavItem href="#" className='text-center' id='logo'>
   <i className="bi bi-shop display-6  me-2"></i>
